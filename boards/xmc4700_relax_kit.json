@@ -1,0 +1,19 @@
+{
+  "build": {
+    "extra_flags": "-DXMC4700_Relax_Kit -DARDUINO=4700 -DXMC4700_F144x2048",
+    "f_cpu": "144000000L",
+    "cpu": "cortex-m4",
+    "family": "XMC4700",
+	"variant":"XMC4700",
+    "board_variant":"XMC4700_Relax_Kit",
+    "v":"2048"
+  },
+  "frameworks": ["arduino"],
+  "name": "XMC4700 Relax Kit",
+  "upload": {
+    "maximum_ram_size": 2048000,
+    "maximum_size": 2096000
+  },
+  "url": "https://www.infineon.com",
+  "vendor": "Infineon"
+}

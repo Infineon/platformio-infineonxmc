@@ -1,0 +1,43 @@
+{
+  "name": "infineonxmc",
+  "title": "Infineon XMC",
+  "description": "Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform",
+  "url": "https://www.infineon.com",
+  "homepage": "",
+  "license": "Apache-2.0",
+  "engines": {
+    "platformio": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Infineon/XMC-for-Arduino.git"
+  },
+  "version": "1.0.6",
+  "packageRepositories": [
+	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
+	"https://sourceforge.net/projects/platformio-storage/files/packages/manifest.json/download",
+	"http://dl.platformio.org/packages/manifest.json"
+  ],
+  "frameworks": {
+    "arduino": {
+      "package": "framework-arduinoxmc",
+      "script": "builder/frameworks/arduino.py"
+    }
+  },
+  "packages": {
+    "toolchain-gccarmnoneeabi": {
+      "type": "toolchain",
+      "version": "https://github.com/Infineon/Assets/releases/download/current/gcc-arm-none-eabi-5_4-2016q3-20160926-win32.zip"
+    },
+    "framework-arduinoxmc": {
+      "type": "framework",
+      "version":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
+      "optional": false
+	},
+    "tool-xmcflasher":{
+      "version":"https://github.com/Infineon/Assets/raw/master/Tools/XMCFlasher_IFX_1.2.1.zip",
+      "optional":false,
+      "type":"uploader"
+    }
+  }
+}

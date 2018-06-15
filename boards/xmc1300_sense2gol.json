@@ -1,0 +1,19 @@
+{
+  "build": {
+    "extra_flags": "-DXMC1300_Sense2GoL -DARDUINO=1300 -DXMC1302_T038x0064",
+    "f_cpu": "32000000L",
+    "cpu": "cortex-m0",
+    "family": "XMC1300",
+	"variant":"XMC1302",
+    "board_variant":"XMC1300_Sense2GoL",
+    "v":"0032"
+  },
+  "frameworks": ["arduino"],
+  "name": "XMC1300 Sense2GoL",
+  "upload": {
+    "maximum_ram_size": 125160,
+    "maximum_size": 65536
+  },
+  "url": "https://www.infineon.com",
+  "vendor": "Infineon"
+}
