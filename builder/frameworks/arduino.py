@@ -47,7 +47,7 @@ env.Append(
     CPPPATH=[
         join(FRAMEWORK_DIR, "cores"),
 #        join(FRAMEWORK_DIR,"cores","xmc_lib","CMSIS","DSP","include"), # comment out if no DSP needed
-        join(FRAMEWORK_DIR,"cores","xmc_lib","CMSIS","include"),
+        join(FRAMEWORK_DIR,"cores","xmc_lib","CMSIS","Include"),
         join(FRAMEWORK_DIR,"cores","xmc_lib","LIBS"),
         join(FRAMEWORK_DIR,"cores","xmc_lib","XMCLib","inc"),
         join(FRAMEWORK_DIR, "cores","avr"),        
