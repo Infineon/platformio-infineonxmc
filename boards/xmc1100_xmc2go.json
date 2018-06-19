@@ -5,7 +5,7 @@
     "cpu": "cortex-m0",
     "family": "XMC1100",
 	"variant":"XMC1100",
-    "board_variant":"XMC1100_XMC2Go",
+    "board_variant":"XMC1100_XMC2GO",
     "v":"0064"
   },
   "frameworks": ["arduino"],
