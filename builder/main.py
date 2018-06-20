@@ -151,7 +151,7 @@ env.Replace(
 
 if "BOARD" in env:
     arm_math = "ARM_MATH_CM0"
-    if "ARM_MATH_CM"+env.BoardConfig().get("build.variant")[-4] == 4:
+    if env.BoardConfig().get("build.variant")[-4] == '4':
         arm_math = "ARM_MATH_CM4"
     env.Append(
         CCFLAGS=[
