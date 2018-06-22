@@ -17,6 +17,10 @@ before_script:
 
 env:
   - PLATFORMIO_PROJECT_DIR=examples/arduino-blink
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-wire/master_reader
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-wire/master_writer
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-wire/slave_receiver
+  - PLATFORMIO_PROJECT_DIR=examples/arduino-wire/slave_sender
 
 install:
   - git clone https://github.com/Infineon/XMC-for-Arduino.git /tmp/core
