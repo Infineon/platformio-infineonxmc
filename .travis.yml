@@ -33,8 +33,8 @@ install:
   - jq '.packages."framework-arduinoxmc".version = "file:///tmp/core/framework-arduinoxmc.zip"' <<<"$platform_json" > platform.json
 
   - pip install -U https://github.com/platformio/platformio/archive/develop.zip
-  - platformio platform uninstall infineonxmc
-  - platformio platform install file://. --without-package=uploader
+  #- platformio platform uninstall infineonxmc
+  - platformio platform install -f file://. --without-package=uploader
 
   
 script:
