@@ -9,7 +9,7 @@
 
 // This example code is in the public domain.
 
-
+#include <Arduino.h>
 #include <Wire.h>
 uint8_t vgl = 1;
 
