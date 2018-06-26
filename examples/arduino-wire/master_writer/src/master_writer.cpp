@@ -13,31 +13,17 @@
 #include <Wire.h>
 
 void setup() {
-  pinMode(LED2, OUTPUT);
-  pinMode(LED3, OUTPUT);
-  digitalWrite(LED2, LOW); 
-  digitalWrite(LED3, LOW);
-  
   Wire.begin(); // join i2c bus (address optional for master)
 }
 
-byte x = 1;
- 
+byte x = 0;
+
 void loop() {
-  delay(1000);
   Wire.beginTransmission(8); // transmit to device #8
-  //Wire.write("x is ");        // sends five bytes
+  Wire.write("x is ");        // sends five bytes
   Wire.write(x);              // sends one byte
   Wire.endTransmission();    // stop transmitting
 
-  if(x % 2 == 0)
-  {
-    digitalWrite(LED2, LOW); 
-  }
-  else 
-  {
-    digitalWrite(LED2, HIGH); 
-  }
-
   x++;
+  delay(500);
 }
