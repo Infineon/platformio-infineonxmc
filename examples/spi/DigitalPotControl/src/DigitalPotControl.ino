@@ -29,7 +29,8 @@
 
 // inslude the SPI library:
 #include <SPI.h>
-
+// platformio does not include this automatically
+#include <Wire.h>
 
 // set pin 10 as the slave select for the digital pot:
 const int slaveSelectPin = 10;

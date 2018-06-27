@@ -25,6 +25,9 @@
 // the sensor communicates using SPI, so include the library:
 #include <SPI.h>
 
+// platformio does not include this automatically
+#include <Wire.h>
+
 //Sensor's memory register addresses:
 const int PRESSURE = 0x1F;      //3 most significant bits of pressure
 const int PRESSURE_LSB = 0x20;  //16 least significant bits of pressure
