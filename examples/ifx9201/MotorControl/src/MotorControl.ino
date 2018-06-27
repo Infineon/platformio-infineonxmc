@@ -3,6 +3,7 @@
  */
 
 #include "SPI.h"
+#include "Wire.h"
 #include "IFX9201.h"
 
 // IFX9201 Object
