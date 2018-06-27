@@ -18,6 +18,8 @@
  const byte month = 6;
  const byte year = 15;
 
+ void print2digits(int number);
+ 
 void setup()
 {
    Serial.begin(9600);

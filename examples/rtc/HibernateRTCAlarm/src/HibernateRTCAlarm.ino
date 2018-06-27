@@ -29,6 +29,7 @@ const byte month = 9;
 const byte year = 15;
 int outLED = LED1;
 
+void alarmMatch();
 void setup()
 {
    Serial.begin(9600);

@@ -30,8 +30,6 @@ env:
   - PLATFORMIO_PROJECT_DIR=examples/rtc/AlarmRTC
   - PLATFORMIO_PROJECT_DIR=examples/rtc/HibernateRTCAlarm
   - PLATFORMIO_PROJECT_DIR=examples/rtc/SimpleRTC
-  - PLATFORMIO_PROJECT_DIR=examples/sense2gol/print_motion
-  - PLATFORMIO_PROJECT_DIR=examples/sense2gol/print_raw_data
   - PLATFORMIO_PROJECT_DIR=examples/spi/BarometricPressureSensor
   - PLATFORMIO_PROJECT_DIR=examples/spi/DigitalPotControl
   - PLATFORMIO_PROJECT_DIR=examples/ultrasonic/betterecho
