@@ -13,7 +13,7 @@
     "onboard_tools":["jlink"]
   },  
   "frameworks": ["arduino"],
-  "name": "XMC1100 XMC2Go",
+  "name": "XMC1100 XMC2GO",
   "upload": {
     "protocol": "jlink",
     "maximum_ram_size": 65536,

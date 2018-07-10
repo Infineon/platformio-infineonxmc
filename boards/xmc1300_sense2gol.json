@@ -10,6 +10,7 @@
   },
   "debug": {
     "jlink_device": "XMC1300-0032",
+    "onboard_tools":["jlink"]
   },    
   "frameworks": ["arduino"],
   "name": "XMC1300 Sense2GoL",
