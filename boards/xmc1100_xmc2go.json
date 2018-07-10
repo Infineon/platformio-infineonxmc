@@ -5,7 +5,7 @@
     "cpu": "cortex-m0",
     "family": "XMC1100",
 	  "variant":"XMC1100",
-    "board_variant":"XMC1100_XMC2Go",
+    "board_variant":"XMC1100_XMC2GO",
     "v":"0064"
   },
   "debug": {
@@ -13,7 +13,7 @@
     "onboard_tools":["jlink"]
   },  
   "frameworks": ["arduino"],
-  "name": "XMC1100 XMC2GO",
+  "name": "XMC1100 XMC2Go",
   "upload": {
     "protocol": "jlink",
     "maximum_ram_size": 65536,
