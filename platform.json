@@ -33,11 +33,6 @@
       "type": "framework",
       "version":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
       "optional": false
-	},
-    "tool-xmcflasher":{
-      "version":"https://github.com/Infineon/Assets/raw/master/Tools/XMCFlasher_IFX_1.2.1.zip",
-      "optional":false,
-      "type":"uploader"
     }
   }
 }

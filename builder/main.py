@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os.path import join
+from os.path import join, isdir
 from time import sleep
-
+from platform import system
 from SCons.Script import (ARGUMENTS, COMMAND_LINE_TARGETS, AlwaysBuild,
                           Builder, Default, DefaultEnvironment)
 
@@ -29,9 +29,6 @@ def BeforeUpload(target, source, env):  # pylint: disable=W0613,W0621
 
     if "program" in COMMAND_LINE_TARGETS:
         return
-
-    # if "micronucleus" in env['UPLOADER']:
-        # print "Please unplug/plug device ..."
 
     upload_options = {}
     if "BOARD" in env:
@@ -89,7 +86,7 @@ def BeforeUpload(target, source, env):  # pylint: disable=W0613,W0621
 
         if upload_options.get("wait_for_upload_port", False):
             env.Replace(UPLOAD_PORT=env.WaitForNewSerialPort(before_ports))
-           
+          
 env.Replace(
     AR="arm-none-eabi-ar",
     AS="arm-none-eabi-as",
@@ -151,22 +148,26 @@ env.Replace(
 
 if "BOARD" in env:
     arm_math = "ARM_MATH_CM0"
+    arm_dsp = ""
     if env.BoardConfig().get("build.variant")[-4] == '4':
         arm_math = "ARM_MATH_CM4"
+        arm_dsp = "ARM_MATH_DSP"
+
     env.Append(
         CCFLAGS=[
             "-mcpu=%s" % env.BoardConfig().get("build.cpu")
         ],
         CPPDEFINES=[
             env.BoardConfig().get("build.family"),
-#            "ARM_MATH_DSP", # comment out if no DSP needed
+            arm_dsp, # comment out if no DSP needed
             arm_math,
             "_INIT_DECLARATION_REQUIRED"
         ],
         LINKFLAGS=[
             "-mcpu=%s" % env.BoardConfig().get("build.cpu"),
             "-T"+join(platform.get_package_dir("framework-arduinoxmc"),"variants",env.BoardConfig().get("build.family"),"linker_script.ld")
-        ]
+        ],
+        SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
 )
      
 env.Append(
@@ -187,8 +188,6 @@ env.Append(
         )
     )
 )
-
-#print env.subst('$OBJCOPY')
 
 #
 # Target: Build executable and linkable firmware
@@ -211,16 +210,39 @@ target_hex = env.ElfToHex(join("$BUILD_DIR", "firmware"), target_elf)
 #
 # Target: Upload firmware
 #
-upload = env.Alias(["upload"], target_hex, "$UPLOADCMD")
-AlwaysBuild(upload)
+debug_tools = env.BoardConfig().get("debug.tools", {})
+upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
+def _jlink_cmd_script(env, source):
+    print "SOURCE",source
+    build_dir = env.subst("$BUILD_DIR")
+    if not isdir(build_dir):
+        makedirs(build_dir)
+    script_path = join(build_dir, "upload.jlink")
+    commands = ["setbmi 3","loadbin %s,0x08000000" % source, "r", "g","exit"]
+    with open(script_path, "w") as fp:
+        fp.write("\n".join(commands))
+    return script_path
 
-variant = env.BoardConfig().get("build.variant")
-v = env.BoardConfig().get("build.v")
-env.Replace(
-    UPLOADER= join(platform.get_package_dir("tool-xmcflasher"),"XMCFlasher.jar"),
-    UPLOADCMD = "java -jar $UPLOADER -p $BUILD_DIR/firmware.hex -device " + variant +"-" + v
+__jlink_cmd_script = _jlink_cmd_script(env, target_hex[0])    
+
+env.Append(
+    jlink_script = __jlink_cmd_script
 )
+print "script path", __jlink_cmd_script
+env.Replace(
+    UPLOADER="JLink.exe" if system() == "Windows" else "JLinkExe",
+    UPLOADERFLAGS=[
+        "-device", env.BoardConfig().get("debug", {}).get("jlink_device"),
+        "-speed", "4000",
+        "-if", "swd",
+        "-autoconnect", "1"
+    ],
+    UPLOADCMD="$UPLOADER $UPLOADERFLAGS -CommanderScript $jlink_script"
+)
+
+upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
+AlwaysBuild(env.Alias("upload", target_hex, upload_actions))
 
 #
 # Target: Define targets

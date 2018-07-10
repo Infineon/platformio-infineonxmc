@@ -8,9 +8,14 @@
     "board_variant":"XMC1100_Boot_Kit",
     "v":"0064"
   },
+  "debug": {
+    "jlink_device": "XMC1100-0064",
+    "onboard_tools":["jlink"]
+  },    
   "frameworks": ["arduino"],
-  "name": "XMC1100 Boot Kit",
+  "name": "XMC1100 Boot Kit",  
   "upload": {
+    "protocol": "jlink",
     "maximum_ram_size": 65536,
     "maximum_size": 65536
   },

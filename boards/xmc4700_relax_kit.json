@@ -4,13 +4,18 @@
     "f_cpu": "144000000L",
     "cpu": "cortex-m4",
     "family": "XMC4700",
-	"variant":"XMC4700",
+    "variant":"XMC4700",
     "board_variant":"XMC4700_Relax_Kit",
     "v":"2048"
   },
+  "debug": {
+    "jlink_device": "XMC4700-2048",
+    "onboard_tools":["jlink"]
+  },    
   "frameworks": ["arduino"],
   "name": "XMC4700 Relax Kit",
   "upload": {
+    "protocol": "jlink",
     "maximum_ram_size": 2048000,
     "maximum_size": 2096000
   },
