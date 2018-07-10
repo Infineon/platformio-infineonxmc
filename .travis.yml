@@ -47,7 +47,7 @@ install:
 
   - pip install -U https://github.com/platformio/platformio/archive/develop.zip
   #- platformio platform uninstall infineonxmc
-  - platformio platform install -f file://. --without-package=uploader
+  - platformio platform install -f file://. 
 
   
 script:
