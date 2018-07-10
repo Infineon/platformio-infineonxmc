@@ -15,6 +15,7 @@
 from os.path import join, isdir
 from time import sleep
 from platform import system
+from os import makedirs
 from SCons.Script import (ARGUMENTS, COMMAND_LINE_TARGETS, AlwaysBuild,
                           Builder, Default, DefaultEnvironment)
 
