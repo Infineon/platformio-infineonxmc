@@ -37,7 +37,7 @@
   "packages": {
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
-      "version": "1.70201.0"
+      "version": "https://github.com/Infineon/Assets/releases/download/current/gcc-arm-none-eabi-5_4-2016q3-20160926-win32.zip"
     },
     "framework-arduinoxmc": {
       "type": "framework",
