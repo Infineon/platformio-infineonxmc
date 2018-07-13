@@ -10,13 +10,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Infineon/XMC-for-Arduino.git"
+    "url": "https://github.com/Infineon/platformio-infineonxmc.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "packageRepositories": [
 	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
 	"https://sourceforge.net/projects/platformio-storage/files/packages/manifest.json/download",
-	"http://dl.platformio.org/packages/manifest.json"
+	"http://dl.platformio.org/packages/manifest.json",
+  {
+    "framework-arduinoxmc":[
+    {
+      "url":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
+      "sha1":"0f09fd02d5cbfa206536e56b70750b2abdd9006dfb630a3d6a42d8322748098b",
+      "version":"1.1.1",
+      "system":"*"
+    }
+    ]
+  }
   ],
   "frameworks": {
     "arduino": {
@@ -27,11 +37,11 @@
   "packages": {
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
-      "version": "https://github.com/Infineon/Assets/releases/download/current/gcc-arm-none-eabi-5_4-2016q3-20160926-win32.zip"
+      "version": "1.70201.0"
     },
     "framework-arduinoxmc": {
       "type": "framework",
-      "version":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
+      "version":"1.1.1",
       "optional": false
     }
   }

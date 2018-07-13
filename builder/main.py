@@ -26,68 +26,6 @@ from platformio.util import get_serialports
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 
-def BeforeUpload(target, source, env):  # pylint: disable=W0613,W0621
-
-    if "program" in COMMAND_LINE_TARGETS:
-        return
-
-    upload_options = {}
-    if "BOARD" in env:
-        upload_options = env.BoardConfig().get("upload", {})
-
-    # Deprecated: compatibility with old projects. Use `program` instead
-    if "usb" in env.subst("$UPLOAD_PROTOCOL"):
-        upload_options['require_upload_port'] = False
-        env.Replace(UPLOAD_SPEED=None)
-
-    if env.subst("$UPLOAD_SPEED"):
-        env.Append(UPLOADERFLAGS=["-b", "$UPLOAD_SPEED"])
-
-    # extra upload flags
-    if "extra_flags" in upload_options:
-        env.Append(UPLOADERFLAGS=upload_options.get("extra_flags"))
-
-    # disable erasing by default
-    env.Append(UPLOADERFLAGS=["-D"])
-
-    if upload_options and not upload_options.get("require_upload_port", False):
-        return
-
-    env.AutodetectUploadPort()
-    env.Append(UPLOADERFLAGS=["-P", '"$UPLOAD_PORT"'])
-
-    if env.subst("$BOARD") in ("raspduino", "emonpi", "sleepypi"):
-
-        def _rpi_sysgpio(path, value):
-            with open(path, "w") as f:
-                f.write(str(value))
-
-        if env.subst("$BOARD") == "raspduino":
-            pin_num = 18
-        elif env.subst("$BOARD") == "sleepypi":
-            pin_num = 22
-        else:
-            pin_num = 4
-
-        _rpi_sysgpio("/sys/class/gpio/export", pin_num)
-        _rpi_sysgpio("/sys/class/gpio/gpio%d/direction" % pin_num, "out")
-        _rpi_sysgpio("/sys/class/gpio/gpio%d/value" % pin_num, 1)
-        sleep(0.1)
-        _rpi_sysgpio("/sys/class/gpio/gpio%d/value" % pin_num, 0)
-        _rpi_sysgpio("/sys/class/gpio/unexport", pin_num)
-    else:
-        if not upload_options.get("disable_flushing", False) \
-            and not env.get("UPLOAD_PORT", "").startswith("net:"):
-            env.FlushSerialBuffer("$UPLOAD_PORT")
-
-        before_ports = get_serialports()
-
-        if upload_options.get("use_1200bps_touch", False):
-            env.TouchSerialPort("$UPLOAD_PORT", 1200)
-
-        if upload_options.get("wait_for_upload_port", False):
-            env.Replace(UPLOAD_PORT=env.WaitForNewSerialPort(before_ports))
-          
 env.Replace(
     AR="arm-none-eabi-ar",
     AS="arm-none-eabi-as",
