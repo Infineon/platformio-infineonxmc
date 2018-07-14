@@ -21,7 +21,6 @@
     "framework-arduinoxmc":[
     {
       "url":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
-      "sha1":"0f09fd02d5cbfa206536e56b70750b2abdd9006dfb630a3d6a42d8322748098b",
       "version":"1.1.1",
       "system":"*"
     }
