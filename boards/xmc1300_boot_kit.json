@@ -9,7 +9,7 @@
     "v":"0200"
   },
   "debug": {
-    "jlink_device": "XMC1300-0200",
+    "jlink_device": "XMC1302-0200",
     "onboard_tools":["jlink"]
   },
   "frameworks": ["arduino"],
