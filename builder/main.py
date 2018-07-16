@@ -158,7 +158,12 @@ def _jlink_cmd_script(env, source):
     if not isdir(build_dir):
         makedirs(build_dir)
     script_path = join(build_dir, "upload.jlink")
-    commands = ["setbmi 3","loadbin %s,0x08000000" % source, "r", "g","exit"]
+    family = env.BoardConfig().get("build.family")
+    commands = []
+    if (family == "XMC1300" or family == "XMC1100"):
+      commands = ["setbmi 3","loadbin %s,0x10001000" % source, "r", "g","exit"]
+    elif (family == "XMC4700" or family == "XMC4800"):
+      commands = ["setbmi 3","loadbin %s,0x08000000" % source, "r", "g","exit"]
     with open(script_path, "w") as fp:
         fp.write("\n".join(commands))
     return script_path
