@@ -1,23 +1,27 @@
 {
   "build": {
-    "extra_flags": "-DXMC1100_Boot_Kit -DARDUINO=1100 -DXMC1100_T038x0064",
-    "f_cpu": "32000000L",
+    "board_variant": "XMC1100_Boot_Kit",
     "cpu": "cortex-m0",
-    "family": "XMC1100",
-    "variant":"XMC1100",
-    "board_variant":"XMC1100_Boot_Kit",
-    "v":"0064"
+    "extra_flags": "-DXMC1100_Boot_Kit -DXMC1100_T038x0064",
+    "f_cpu": "32000000L",
+    "mcu": "XMC1100",
+    "v": "0064",
+    "variant": "XMC1100"
   },
   "debug": {
     "jlink_device": "XMC1100-0064",
-    "onboard_tools":["jlink"]
-  },    
-  "frameworks": ["arduino"],
-  "name": "XMC1100 Boot Kit",  
+    "onboard_tools": [
+      "jlink"
+    ]
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "XMC1100 Boot Kit",
   "upload": {
-    "protocol": "jlink",
     "maximum_ram_size": 65536,
-    "maximum_size": 65536
+    "maximum_size": 65536,
+    "protocol": "jlink"
   },
   "url": "https://www.infineon.com",
   "vendor": "Infineon"

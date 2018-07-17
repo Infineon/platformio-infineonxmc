@@ -1,14 +1,6 @@
 language: python
 python:
   - "2.7"
-cache:
-    directories:
-        - "~/.platformio"
-addons:
-  apt_packages:
-    - lib32bz2-1.0
-    - lib32ncurses5
-    - lib32z1
 
 env:
   - PLATFORMIO_PROJECT_DIR=examples/arduino-blink
@@ -31,20 +23,8 @@ env:
   - PLATFORMIO_PROJECT_DIR=examples/ultrasonic/simple-echo
 
 install:
-  - git clone https://github.com/Infineon/XMC-for-Arduino.git /tmp/core
-  - zip -r /tmp/core/framework-arduinoxmc.zip /tmp/core/arm  
-  
-  - cp -r . /tmp/builder
-  - cd /tmp/builder
-  - platform_json=$(<platform.json)
-  - rm platform.json
-  - jq '.packages."framework-arduinoxmc".version = "file:///tmp/core/framework-arduinoxmc.zip"' <<<"$platform_json" > platform.json
+  - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+  - platformio platform install file://.
 
-  - pip install -U platformio
-  - platformio update
-  #- platformio platform uninstall infineonxmc
-  - platformio platform install -f file://. 
-
-  
 script:
   - platformio run -d $PLATFORMIO_PROJECT_DIR

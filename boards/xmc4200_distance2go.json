@@ -1,23 +1,27 @@
 {
   "build": {
+    "board_variant": "XMC4200_Distance2Go",
+    "cpu": "cortex-m4",
     "extra_flags": "-DXMC4200_Distance2Go -DARDUINO=4200 -DXMC4200_Q48x256",
     "f_cpu": "80000000L",
-    "cpu": "cortex-m4",
-    "family": "XMC4200",
-    "variant":"XMC4200",
-    "board_variant":"XMC4200_Distance2Go",
-    "v":"256"
+    "mcu": "XMC4200",
+    "v": "256",
+    "variant": "XMC4200"
   },
   "debug": {
     "jlink_device": "XMC4200-256",
-    "onboard_tools":["jlink"]
-  },    
-  "frameworks": ["arduino"],
+    "onboard_tools": [
+      "jlink"
+    ]
+  },
+  "frameworks": [
+    "arduino"
+  ],
   "name": "XMC4200 Distance2Go",
   "upload": {
-    "protocol": "jlink",
     "maximum_ram_size": 262144,
-    "maximum_size": 256000
+    "maximum_size": 256000,
+    "protocol": "jlink"
   },
   "url": "https://www.infineon.com",
   "vendor": "Infineon"

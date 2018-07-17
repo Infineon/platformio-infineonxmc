@@ -3,7 +3,7 @@
   "title": "Infineon XMC",
   "description": "Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform",
   "url": "https://www.infineon.com",
-  "homepage": "",
+  "homepage": "https://platformio.org/platforms/infineonxmc",
   "license": "Apache-2.0",
   "engines": {
     "platformio": "^3.0.0"
@@ -14,18 +14,16 @@
   },
   "version": "1.0.2",
   "packageRepositories": [
-	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
-	"https://sourceforge.net/projects/platformio-storage/files/packages/manifest.json/download",
-	"http://dl.platformio.org/packages/manifest.json",
-  {
-    "framework-arduinoxmc":[
+  	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
+  	"http://dl.platformio.org/packages/manifest.json",
     {
-      "url":"https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
-      "version":"1.1.1",
-      "system":"*"
+      "framework-arduinoxmc": [
+        {
+          "url": "https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.1.1/XMC_IFX_1.1.1.zip",
+          "version": "1.1.1"
+        }
+      ]
     }
-    ]
-  }
   ],
   "frameworks": {
     "arduino": {
@@ -40,8 +38,13 @@
     },
     "framework-arduinoxmc": {
       "type": "framework",
-      "version":"1.1.1",
-      "optional": false
+      "version": "^1.1.1",
+      "optional": true
+    },
+    "tool-jlink": {
+      "type": "uploader",
+      "optional": true,
+      "version": "^1.63208.0"
     }
   }
 }

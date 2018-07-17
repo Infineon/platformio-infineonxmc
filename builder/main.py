@@ -12,15 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os.path import join, isdir
-from time import sleep
-from platform import system
 from os import makedirs
-from SCons.Script import (ARGUMENTS, COMMAND_LINE_TARGETS, AlwaysBuild,
-                          Builder, Default, DefaultEnvironment)
+from os.path import join, isdir
+from platform import system
 
-from platformio.util import get_serialports
-
+from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
 
 
 env = DefaultEnvironment()
@@ -38,22 +34,26 @@ env.Replace(
 
     ARFLAGS=["rcs"],
 
-    ASFLAGS=["-c","-g","-w","-x", "assembler-with-cpp","-mthumb"],
+    ASFLAGS=[
+        "-c",
+        "-g",
+        "-w",
+        "-x", "assembler-with-cpp",
+        "-mthumb"
+    ],
 
     CFLAGS=[
         "-MMD"
     ],
-    
+
     # both c and cpp
     CCFLAGS=[
         "-Os",  # optimize for size
-        "-c",
-        "-g",
-        "-w", #disables compiler warnings
+        "-w",  # disables compiler warnings
         "-nostdlib",
         "-Wall",  # show warnings
         "-ffunction-sections",  # place each function in its own section
-        "-fdata-sections",      
+        "-fdata-sections",
         "-mthumb"
     ],
 
@@ -61,10 +61,12 @@ env.Replace(
         "-fno-exceptions",
         "-fno-threadsafe-statics",
         "-fpermissive",
-        "-mthumb"       
+        "-mthumb"
     ],
 
-    CPPDEFINES=[("F_CPU", "$BOARD_F_CPU")],
+    CPPDEFINES=[
+        ("F_CPU", "$BOARD_F_CPU")
+    ],
 
     LINKFLAGS=[
         "-Os",
@@ -73,16 +75,17 @@ env.Replace(
         "-Wl,--gc-sections",
         "-mthumb",
         "--specs=nano.specs",
-        "--specs=nosys.specs",
-        "-Wl,-Map,"+join("$BUILD_DIR", "hi")+".map"
+        "--specs=nosys.specs"
     ],
 
-    LIBS=["m","gcc","c","stdc++"],
-    
-    PROGSUFFIX=".elf",
-    
-    FRAMEWORK_ARDUINOXMC_DIR=platform.get_package_dir(
-        "framework-arduinoxmc"),
+    LIBS=["m", "gcc", "c", "stdc++"],
+
+    SIZEPROGREGEXP=r"^(?:\.text|\.data|\.rodata|\.text.align|\.ARM.exidx)\s+(\d+).*",
+    SIZEDATAREGEXP=r"^(?:\.data|\.bss|\.noinit)\s+(\d+).*",
+    SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
+    SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
+
+    PROGSUFFIX=".elf"
 )
 
 if "BOARD" in env:
@@ -97,22 +100,17 @@ if "BOARD" in env:
             "-mcpu=%s" % env.BoardConfig().get("build.cpu")
         ],
         CPPDEFINES=[
-            env.BoardConfig().get("build.family"),
-            arm_dsp, # comment out if no DSP needed
+            env.BoardConfig().get("build.mcu"),
+            arm_dsp,  # comment out if no DSP needed
             arm_math,
             "_INIT_DECLARATION_REQUIRED"
         ],
         LINKFLAGS=[
-            "-mcpu=%s" % env.BoardConfig().get("build.cpu"),
-            "-T"+join(platform.get_package_dir("framework-arduinoxmc"),"variants",env.BoardConfig().get("build.family"),"linker_script.ld")
-        ],
-        SIZEPRINTCMD='$SIZETOOL -B -d $SOURCES',
-)
-     
+            "-mcpu=%s" % env.BoardConfig().get("build.cpu")
+        ]
+    )
+
 env.Append(
-    CPPPATH = [
-    ],
-    
     ASFLAGS=env.get("CCFLAGS", [])[:],
     BUILDERS=dict(
         ElfToHex=Builder(
@@ -152,28 +150,28 @@ target_hex = env.ElfToHex(join("$BUILD_DIR", "firmware"), target_elf)
 debug_tools = env.BoardConfig().get("debug.tools", {})
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
+
 def _jlink_cmd_script(env, source):
-    print "SOURCE",source
     build_dir = env.subst("$BUILD_DIR")
     if not isdir(build_dir):
         makedirs(build_dir)
     script_path = join(build_dir, "upload.jlink")
-    family = env.BoardConfig().get("build.family")
+    mcu = env.BoardConfig().get("build.mcu")
     commands = []
-    if (family == "XMC1300" or family == "XMC1100"):
-      commands = ["loadbin %s,0x10001000" % source, "r", "go","exit"]
-    elif (family == "XMC4700" or family == "XMC4800"):
-      commands = ["loadbin %s,0x08000000" % source, "r", "g","exit"]
+    if (mcu == "XMC1300" or mcu == "XMC1100"):
+        commands = ["loadbin %s,0x10001000" % source, "r", "go", "exit"]
+    elif (mcu == "XMC4700" or mcu == "XMC4800"):
+        commands = ["loadbin %s,0x08000000" % source, "r", "g", "exit"]
     with open(script_path, "w") as fp:
         fp.write("\n".join(commands))
     return script_path
 
-__jlink_cmd_script = _jlink_cmd_script(env, target_hex[0])    
+__jlink_cmd_script = _jlink_cmd_script(env, target_hex[0])
 
 env.Append(
-    jlink_script = __jlink_cmd_script
+    jlink_script=__jlink_cmd_script
 )
-print "script path", __jlink_cmd_script
+
 env.Replace(
     UPLOADER="JLink.exe" if system() == "Windows" else "JLinkExe",
     UPLOADERFLAGS=[
@@ -191,4 +189,5 @@ AlwaysBuild(env.Alias("upload", target_hex, upload_actions))
 #
 # Target: Define targets
 #
-Default([target_hex,target_size])
+
+Default([target_hex, target_size])
