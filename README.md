@@ -1,11 +1,34 @@
-# platformio-infineonxmc
-
+# Infineon XMC: development platform for [PlatformIO](https://platformio.org)
 [![Build Status](https://travis-ci.org/Infineon/platformio-infineonxmc.svg?branch=master)](https://travis-ci.org/Infineon/platformio-infineonxmc)
 
-Scripts and examples for developing XMC Microcontroller Boards using Platform IO
+Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform
 
-## Usage
+* [Home](http://platformio.org/platforms/infineonxmc) (home page in PlatformIO Platform Registry)
+* [Documentation](http://docs.platformio.org/page/platforms/infineonxmc.html) (advanced usage, packages, boards, frameworks, etc.)
 
+# Usage
+
+1. [Install PlatformIO](http://platformio.org)
+2. Create PlatformIO project and configure a platform option in [platformio.ini](http://docs.platformio.org/page/projectconf.html) file:
+
+## Stable version
+
+```ini
+[env:stable]
+platform = infineonxmc
+board = ...
+...
 ```
-platformio platform install https://github.com/Infineon/platformio-infineonxmc.git
+
+## Development version
+
+```ini
+[env:development]
+platform = https://github.com/Infineon/platformio-infineonxmc.git
+board = ...
+...
 ```
+
+# Configuration
+
+Please navigate to [documentation](http://docs.platformio.org/page/platforms/infineonxmc.html).
