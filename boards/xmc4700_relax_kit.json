@@ -12,7 +12,8 @@
     "jlink_device": "XMC4700-2048",
     "onboard_tools": [
       "jlink"
-    ]
+    ],
+    "svd_path": "XMC4700.svd"
   },
   "frameworks": [
     "arduino"

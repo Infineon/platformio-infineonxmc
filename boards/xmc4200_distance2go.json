@@ -12,7 +12,8 @@
     "jlink_device": "XMC4200-256",
     "onboard_tools": [
       "jlink"
-    ]
+    ],
+    "svd_path": "XMC4200.svd"
   },
   "frameworks": [
     "arduino"

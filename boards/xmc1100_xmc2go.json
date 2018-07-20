@@ -12,7 +12,8 @@
     "jlink_device": "XMC1100-0064",
     "onboard_tools": [
       "jlink"
-    ]
+    ],
+    "svd_path": "XMC1100.svd"
   },
   "frameworks": [
     "arduino"
