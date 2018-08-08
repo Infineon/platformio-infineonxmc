@@ -63,6 +63,11 @@ env.Append(
         join(FRAMEWORK_DIR, "cores", "xmc_lib", "LIBS"),
         join(FRAMEWORK_DIR, "cores", "xmc_lib", "XMCLib", "inc"),
         join(FRAMEWORK_DIR, "cores", "usblib"),
+        join(FRAMEWORK_DIR, "cores", "usblib","Class"),
+        join(FRAMEWORK_DIR, "cores", "usblib","Class","Device"),
+        join(FRAMEWORK_DIR, "cores", "usblib","Common"),
+        join(FRAMEWORK_DIR, "cores", "usblib","Core"),
+        join(FRAMEWORK_DIR, "cores", "usblib","Core","XMC4000"),
         join(FRAMEWORK_DIR, "cores", "avr"),
         join(FRAMEWORK_DIR, "variants", board_config.get("build.mcu"),
              "config", board_config.get("build.board_variant"))
