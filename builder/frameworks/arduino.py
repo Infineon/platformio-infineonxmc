@@ -62,6 +62,7 @@ env.Append(
         join(FRAMEWORK_DIR, "cores", "xmc_lib", "CMSIS", "Include"),
         join(FRAMEWORK_DIR, "cores", "xmc_lib", "LIBS"),
         join(FRAMEWORK_DIR, "cores", "xmc_lib", "XMCLib", "inc"),
+        join(FRAMEWORK_DIR, "cores", "usblib"),
         join(FRAMEWORK_DIR, "cores", "avr"),
         join(FRAMEWORK_DIR, "variants", board_config.get("build.mcu"),
              "config", board_config.get("build.board_variant"))

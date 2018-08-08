@@ -91,10 +91,11 @@ env.Replace(
 if "BOARD" in env:
     arm_math = "ARM_MATH_CM0"
     arm_dsp = ""
+    usb0_used = ""
     if env.BoardConfig().get("build.variant")[-4] == '4':
         arm_math = "ARM_MATH_CM4"
         arm_dsp = "ARM_MATH_DSP"
-
+        usb0_used = "USB0"
     env.Append(
         CCFLAGS=[
             "-mcpu=%s" % env.BoardConfig().get("build.cpu")
@@ -103,6 +104,7 @@ if "BOARD" in env:
             env.BoardConfig().get("build.mcu"),
             arm_dsp,  # comment out if no DSP needed
             arm_math,
+            usb0_used,
             "_INIT_DECLARATION_REQUIRED"
         ],
         LINKFLAGS=[
