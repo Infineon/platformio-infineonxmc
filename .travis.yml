@@ -22,7 +22,6 @@ env:
   - PLATFORMIO_PROJECT_DIR=examples/ultrasonic/betterecho
   - PLATFORMIO_PROJECT_DIR=examples/ultrasonic/simple-echo
   - PLATFORMIO_PROJECT_DIR=examples/radar/doppler_speed
-  - PLATFORMIO_PROJECT_DIR=examples/onewire/configEEPROM
 
 install:
   - pip install -U https://github.com/platformio/platformio/archive/develop.zip
