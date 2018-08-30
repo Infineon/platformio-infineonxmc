@@ -1,0 +1,29 @@
+{
+  "build": {
+    "board_variant": "XMC1400_Boot_Kit",
+    "cpu": "cortex-m0",
+    "extra_flags": "-DXMC1400_Boot_Kit -DARDUINO=1400 -DXMC1404_Q064x0200",
+    "f_cpu": "48000000L",
+    "mcu": "XMC1400",
+    "v": "0200",
+    "variant": "XMC1404"
+  },
+  "debug": {
+    "jlink_device": "XMC1404-0200",
+    "onboard_tools": [
+      "jlink"
+    ],
+    "svd_path": "XMC1400.svd"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "XMC1400 Boot Kit",
+  "upload": {
+    "maximum_ram_size": 16384,
+    "maximum_size": 2048000,
+    "protocol": "jlink"
+  },
+  "url": "https://www.infineon.com",
+  "vendor": "Infineon"
+}

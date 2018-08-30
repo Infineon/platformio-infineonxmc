@@ -162,7 +162,7 @@ def _jlink_cmd_script(env, source):
     script_path = join(build_dir, "upload.jlink")
     mcu = env.BoardConfig().get("build.mcu")
     commands = []
-    if (mcu == "XMC1300" or mcu == "XMC1100"):
+    if (mcu == "XMC1400" or mcu == "XMC1300" or mcu == "XMC1100"):
         commands = ["loadbin %s,0x10001000" % source, "r", "go", "exit"]
     elif (mcu == "XMC4700" or mcu == "XMC4800"):
         commands = ["loadbin %s,0x08000000" % source, "r", "g", "exit"]
