@@ -170,21 +170,16 @@ def _jlink_cmd_script(env, source):
         fp.write("\n".join(commands))
     return script_path
 
-__jlink_cmd_script = _jlink_cmd_script(env, target_hex[0])
-
-env.Append(
-    jlink_script=__jlink_cmd_script
-)
-
 env.Replace(
+    __jlink_cmd_script=_jlink_cmd_script,
     UPLOADER="JLink.exe" if system() == "Windows" else "JLinkExe",
     UPLOADERFLAGS=[
         "-device", env.BoardConfig().get("debug", {}).get("jlink_device"),
         "-speed", "4000",
-        "-if", "swd",
+        "-if", ("jtag" if upload_protocol == "jlink-jtag" else "swd"),
         "-autoconnect", "1"
     ],
-    UPLOADCMD="$UPLOADER $UPLOADERFLAGS -CommanderScript $jlink_script"
+    UPLOADCMD='$UPLOADER $UPLOADERFLAGS -CommanderScript "${__jlink_cmd_script(__env__, SOURCE)}"'
 )
 
 upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
