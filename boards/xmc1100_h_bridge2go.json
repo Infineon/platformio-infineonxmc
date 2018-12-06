@@ -20,7 +20,7 @@
   ],
   "name": "XMC1100 H-Bridge 2Go",
   "upload": {
-    "maximum_ram_size": 65536,
+    "maximum_ram_size": 16384,
     "maximum_size": 65536,
     "protocol": "jlink"
   },

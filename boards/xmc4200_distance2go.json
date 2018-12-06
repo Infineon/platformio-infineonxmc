@@ -20,8 +20,8 @@
   ],
   "name": "XMC4200 Distance2Go",
   "upload": {
-    "maximum_ram_size": 262144,
-    "maximum_size": 256000,
+    "maximum_ram_size": 40960,
+    "maximum_size": 262144,
     "protocol": "jlink"
   },
   "url": "https://www.infineon.com",
