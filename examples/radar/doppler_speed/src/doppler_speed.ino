@@ -28,7 +28,7 @@ void setup()
 {
   Serial.begin(115200);
   RadarDataProcessor.begin(RADAR_BGT24LTR11, callback);
-  RadarDataProcessor.enableSpeedDetection();
+  RadarDataProcessor.enableFft();
   Serial.println("Init done!");
 }
 
