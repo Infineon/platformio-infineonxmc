@@ -133,7 +133,17 @@ if "BOARD" in env:
 #
 # Target: Build executable and linkable firmware
 #
-target_elf = env.BuildProgram()
+
+target_elf = None
+if "nobuild" in COMMAND_LINE_TARGETS:
+    target_elf = join("$BUILD_DIR", "${PROGNAME}.elf")
+    target_firm = join("$BUILD_DIR", "${PROGNAME}.hex")
+else:
+    target_elf = env.BuildProgram()
+    target_firm = env.ElfToHex(join("$BUILD_DIR", "${PROGNAME}"), target_elf)
+
+AlwaysBuild(env.Alias("nobuild", target_firm))
+target_buildprog = env.Alias("buildprog", target_firm, target_firm)
 
 #
 # Target: Print binary size
@@ -142,11 +152,6 @@ target_size = env.Alias(
     "size", target_elf,
     env.VerboseAction("$SIZEPRINTCMD", "Calculating size $SOURCE"))
 AlwaysBuild(target_size)
-
-#
-# Target: Build the .hex file
-#
-target_hex = env.ElfToHex(join("$BUILD_DIR", "firmware"), target_elf)
 
 #
 # Target: Upload firmware
@@ -183,10 +188,10 @@ env.Replace(
 )
 
 upload_actions = [env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE")]
-AlwaysBuild(env.Alias("upload", target_hex, upload_actions))
+AlwaysBuild(env.Alias("upload", target_firm, upload_actions))
 
 #
 # Target: Define targets
 #
 
-Default([target_hex, target_size])
+Default([target_buildprog, target_size])
