@@ -49,9 +49,9 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-T", join(
+        "-T", env.BoardConfig().get("build.ldscript", join(
             platform.get_package_dir("framework-arduinoxmc"),
-            "variants", env.BoardConfig().get("build.mcu"), "linker_script.ld"
+            "variants", env.BoardConfig().get("build.mcu"), "linker_script.ld")
         )
     ],
 
