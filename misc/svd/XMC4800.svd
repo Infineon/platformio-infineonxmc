@@ -44819,7 +44819,7 @@
 					<fields>
 						<field>
 							<name>RESET_CMD</name>
-							<description>Reset commands issued by XMC4700</description>
+							<description>Reset commands issued by XMC4800</description>
 							<lsb>0</lsb>
 							<msb>7</msb>
 							<access>read-only</access>
