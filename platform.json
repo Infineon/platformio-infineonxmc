@@ -15,15 +15,7 @@
   "version": "1.1.4",
   "packageRepositories": [
   	"https://dl.bintray.com/platformio/dl-packages/manifest.json",
-  	"http://dl.platformio.org/packages/manifest.json",
-    {
-      "framework-arduinoxmc": [
-        {
-          "url": "https://github.com/Infineon/XMC-for-Arduino/releases/download/V1.4.0/XMC_IFX_1.4.0.zip",
-          "version": "1.4.0"
-        }
-      ]
-    }
+  	"http://dl.platformio.org/packages/manifest.json"
   ],
   "frameworks": {
     "arduino": {
