@@ -2,8 +2,7 @@
   "name": "infineonxmc",
   "title": "Infineon XMC",
   "description": "Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform",
-  "url": "https://www.infineon.com",
-  "homepage": "https://platformio.org/platforms/infineonxmc",
+  "homepage": "https://www.infineon.com",
   "license": "Apache-2.0",
   "engines": {
     "platformio": "<5"
