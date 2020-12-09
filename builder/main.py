@@ -182,7 +182,8 @@ env.Replace(
         "-device", env.BoardConfig().get("debug", {}).get("jlink_device"),
         "-speed", "4000",
         "-if", ("jtag" if upload_protocol == "jlink-jtag" else "swd"),
-        "-autoconnect", "1"
+        "-autoconnect", "1",
+        "-NoGui", "1"
     ],
     UPLOADCMD='$UPLOADER $UPLOADERFLAGS -CommanderScript "${__jlink_cmd_script(__env__, SOURCE)}"'
 )
