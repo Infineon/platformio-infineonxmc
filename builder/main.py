@@ -44,11 +44,10 @@ env.Replace(
 
 env.Append(
     ASFLAGS=[
-        "-c",
-        "-g",
-        "-w",
+        "-mthumb",
+    ],
+    ASPPFLAGS=[
         "-x", "assembler-with-cpp",
-        "-mthumb"
     ],
 
     CFLAGS=[
@@ -103,9 +102,6 @@ env.Append(
     )
 )
 
-# copy CCFLAGS to ASFLAGS (-x assembler-with-cpp mode)
-env.Append(ASFLAGS=env.get("CCFLAGS", [])[:])
-
 if "BOARD" in env:
     arm_math = "ARM_MATH_CM0"
     arm_dsp = ""
@@ -115,6 +111,9 @@ if "BOARD" in env:
         arm_dsp = "ARM_MATH_DSP"
         usb0_used = "USB0"
     env.Append(
+        ASFLAGS=[
+            "-mcpu=%s" % env.BoardConfig().get("build.cpu")
+        ],
         CCFLAGS=[
             "-mcpu=%s" % env.BoardConfig().get("build.cpu")
         ],
