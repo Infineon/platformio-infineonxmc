@@ -12,14 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from platformio.managers.platform import PlatformBase
-from platform import system
+import sys
 
+from platformio.public import PlatformBase
+
+
+IS_WINDOWS = sys.platform.startswith("win")
 
 class InfineonxmcPlatform(PlatformBase):
 
     def get_boards(self, id_=None):
-        result = PlatformBase.get_boards(self, id_)
+        result = super().get_boards(id_)
         if not result:
             return result
         if id_:
@@ -49,7 +52,7 @@ class InfineonxmcPlatform(PlatformBase):
                     "-port", "2331"
                 ],
                 "executable": ("JLinkGDBServerCL.exe"
-                               if system() == "Windows" else
+                               if IS_WINDOWS else
                                "JLinkGDBServer")
             },
             "onboard": link in debug.get("onboard_tools", [])
