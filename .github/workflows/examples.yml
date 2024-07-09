@@ -19,7 +19,6 @@ jobs:
           - "examples/device-control/SleepModeXMC1100"
           - "examples/device-control/SleepModeXMC4700"
           - "examples/device-control/StackMemoryMeasurement"
-          - "examples/ifx9201/MotorControl"
           - "examples/rtc/AlarmRTC"
           - "examples/rtc/HibernateRTCAlarm"
           - "examples/rtc/SimpleRTC"
