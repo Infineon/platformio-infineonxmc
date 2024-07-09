@@ -7,7 +7,7 @@
     "mcu": "XMC1300",
     "v": "0200",
     "variant": "XMC1302",
-    "ldscript": "linker_script_200k.ld"
+    "script": "linker_script_200k.ld"
   },
   "debug": {
     "jlink_device": "XMC1302-0200",
