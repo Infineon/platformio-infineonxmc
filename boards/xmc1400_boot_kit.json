@@ -6,7 +6,8 @@
     "f_cpu": "48000000L",
     "mcu": "XMC1400",
     "v": "0200",
-    "variant": "XMC1404"
+    "variant": "XMC1404",
+    "ldscript": "linker_script_200k.ld"
   },
   "debug": {
     "jlink_device": "XMC1404-0200",
