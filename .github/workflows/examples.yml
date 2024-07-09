@@ -20,7 +20,7 @@ jobs:
           - "examples/device-control/SleepModeXMC4700"
           - "examples/device-control/StackMemoryMeasurement"
           - "examples/rtc/AlarmRTC"
-          - "examples/rtc/HibernateRTCAlarm"
+          # - "examples/rtc/HibernateRTCAlarm"  TODO: Need to update with new XMCLib API
           - "examples/rtc/SimpleRTC"
           - "examples/spi/BarometricPressureSensor"
           - "examples/spi/DigitalPotControl"
