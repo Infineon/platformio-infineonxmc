@@ -6,7 +6,7 @@
 Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform
 
 * [Home](https://registry.platformio.org/platforms/infineon/infineonxmc) (home page in the PlatformIO Registry)
-* [Documentation](https://docs.platformio.org/en/latest/platforms/infineonxmc.html) (advanced usage, packages, boards, frameworks, etc.)
+* [Documentation](https://docs.platformio.org/en/latest/projectconf/section_env_platform.html#platform) (advanced usage, packages, boards, frameworks, etc.)
 
 # Usage
 
