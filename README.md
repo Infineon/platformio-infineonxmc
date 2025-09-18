@@ -1,7 +1,7 @@
 # Infineon XMC: development platform for [PlatformIO](https://platformio.org)
 
 [![Build Status](https://github.com/Infineon/platformio-infineonxmc/workflows/Examples/badge.svg)](https://github.com/Infineon/platformio-infineonxmc/actions)
-[![Check links](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml)
+[![Check links](https://github.com/Infineon/platformio-infineonxmc/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/platformio-infineonxmc/actions/workflows/check_links.yml)
 
 Infineon has designed the XMC microcontrollers for real-time critical applications with an industry-standard core. The XMC microcontrollers can be integrated with the Arduino platform
 
