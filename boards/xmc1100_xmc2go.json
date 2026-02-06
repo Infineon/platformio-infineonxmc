@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC1100_XMC2GO",
+    "board_variant": "KIT_XMC_2GO_XMC1100_V1",
     "cpu": "cortex-m0",
-    "extra_flags": "-DXMC1100_XMC2GO -DXMC1100_T038x0064",
+    "extra_flags": "-DKIT_XMC_2GO_XMC1100_V1 -DXMC1100_T038x0064",
     "f_cpu": "32000000L",
     "mcu": "XMC1100",
     "v": "0064",

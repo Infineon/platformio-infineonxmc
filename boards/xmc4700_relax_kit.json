@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC4700_Relax_Kit",
+    "board_variant": "KIT_XMC47_RELAX",
     "cpu": "cortex-m4",
-    "extra_flags": "-DXMC4700_Relax_Kit -DARDUINO=4700 -DXMC4700_F144x2048",
+    "extra_flags": "-DKIT_XMC47_RELAX -DARDUINO=4700 -DXMC4700_F144x2048",
     "f_cpu": "144000000L",
     "mcu": "XMC4700",
     "v": "2048",

@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC1300_Boot_Kit",
+    "board_variant": "KIT_XMC13_BOOT_001",
     "cpu": "cortex-m0",
-    "extra_flags": "-DXMC1300_Boot_Kit -DARDUINO=1300 -DXMC1302_T038x0200",
+    "extra_flags": "-DKIT_XMC13_BOOT_001 -DARDUINO=1300 -DXMC1302_T038x0200",
     "f_cpu": "32000000L",
     "mcu": "XMC1300",
     "v": "0200",
