@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC1100_Boot_Kit",
+    "board_variant": "KIT_XMC11_BOOT_001",
     "cpu": "cortex-m0",
-    "extra_flags": "-DXMC1100_Boot_Kit -DXMC1100_T038x0064",
+    "extra_flags": "-DKIT_XMC11_BOOT_001 -DXMC1100_T038x0064",
     "f_cpu": "32000000L",
     "mcu": "XMC1100",
     "v": "0064",
