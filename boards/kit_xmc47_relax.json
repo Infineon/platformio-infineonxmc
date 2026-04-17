@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC4700_Relax_Kit",
+    "board_variant": "KIT_XMC47_RELAX",
     "cpu": "cortex-m4",
-    "extra_flags": "-DXMC4700_Relax_Kit -DARDUINO=4700 -DXMC4700_F144x2048",
+    "extra_flags": "-DKIT_XMC47_RELAX -DXMC4700_Relax_Kit -DXMC4700_F144x2048 -DARM_MATH_CM4 -DXMC4_SERIES",
     "f_cpu": "144000000L",
     "mcu": "XMC4700",
     "v": "2048",
@@ -18,10 +18,10 @@
   "frameworks": [
     "arduino"
   ],
-  "name": "XMC4700 Relax Kit",
+  "name": "KIT_XMC47_RELAX",
   "upload": {
-    "maximum_ram_size": 2048000,
-    "maximum_size": 2096000,
+    "maximum_ram_size": 352000,
+    "maximum_size": 2048000,
     "protocol": "jlink"
   },
   "url": "https://www.infineon.com",

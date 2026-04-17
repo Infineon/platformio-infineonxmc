@@ -1,0 +1,30 @@
+{
+  "build": {
+    "board_variant": "KIT_XMC13_BOOT_001",
+    "cpu": "cortex-m0",
+    "extra_flags": "-DKIT_XMC13_BOOT_001 -DXMC1300_Boot_Kit -DXMC1302_T038x0200 -DARM_MATH_CM0 -DXMC1_SERIES",
+    "f_cpu": "32000000L",
+    "mcu": "XMC1300",
+    "v": "0200",
+    "variant": "XMC1300",
+    "script": "linker_script_200k.ld"
+  },
+  "debug": {
+    "jlink_device": "XMC1302-0200",
+    "onboard_tools": [
+      "jlink"
+    ],
+    "svd_path": "XMC1300.svd"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "KIT_XMC13_BOOT_001",
+  "upload": {
+    "maximum_ram_size": 16384,
+    "maximum_size": 204800,
+    "protocol": "jlink"
+  },
+  "url": "https://www.infineon.com",
+  "vendor": "Infineon"
+}

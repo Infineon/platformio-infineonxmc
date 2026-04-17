@@ -1,25 +1,25 @@
 {
   "build": {
-    "board_variant": "XMC1300_Boot_Kit",
+    "board_variant": "KIT_XMC14_2GO",
     "cpu": "cortex-m0",
-    "extra_flags": "-DXMC1300_Boot_Kit -DARDUINO=1300 -DXMC1302_T038x0200",
-    "f_cpu": "32000000L",
-    "mcu": "XMC1300",
+    "extra_flags": "-DKIT_XMC14_2GO -DXMC1400_XMC2GO -DXMC1404_Q040x0200 -DARM_MATH_CM0 -DXMC1_SERIES",
+    "f_cpu": "48000000L",
+    "mcu": "XMC1400",
     "v": "0200",
-    "variant": "XMC1302",
+    "variant": "XMC1400",
     "script": "linker_script_200k.ld"
   },
   "debug": {
-    "jlink_device": "XMC1302-0200",
+    "jlink_device": "XMC1404-0200",
     "onboard_tools": [
       "jlink"
     ],
-    "svd_path": "XMC1300.svd"
+    "svd_path": "XMC1400.svd"
   },
   "frameworks": [
     "arduino"
   ],
-  "name": "XMC1300 Boot Kit",
+  "name": "KIT_XMC14_2GO",
   "upload": {
     "maximum_ram_size": 16384,
     "maximum_size": 65536,

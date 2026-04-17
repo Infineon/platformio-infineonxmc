@@ -1,8 +1,8 @@
 {
   "build": {
-    "board_variant": "XMC1100_Boot_Kit",
+    "board_variant": "KIT_XMC11_BOOT_001",
     "cpu": "cortex-m0",
-    "extra_flags": "-DXMC1100_Boot_Kit -DXMC1100_T038x0064",
+    "extra_flags": "-DKIT_XMC11_BOOT_001 -DXMC1100_Boot_Kit -DXMC1100_T038x0064 -DARM_MATH_CM0 -DXMC1_SERIES",
     "f_cpu": "32000000L",
     "mcu": "XMC1100",
     "v": "0064",
@@ -18,7 +18,7 @@
   "frameworks": [
     "arduino"
   ],
-  "name": "XMC1100 Boot Kit",
+  "name": "KIT_XMC11_BOOT_001",
   "upload": {
     "maximum_ram_size": 16384,
     "maximum_size": 65536,
