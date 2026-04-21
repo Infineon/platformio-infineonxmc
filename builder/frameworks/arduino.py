@@ -48,17 +48,32 @@ env.Append(
         "-std=gnu++11"
     ],
 
+    # -iquote: only searched for #include "..." (quoted), NOT for #include <...>
+    # This prevents Windows case-insensitive FS from resolving <string.h> -> api/String.h
+    # -include sys/types.h: force-include to provide caddr_t (BSD type) for all TUs,
+    # since _GNU_SOURCE/_BSD_SOURCE macros alone are insufficient in this newlib version.
+    CCFLAGS=[
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api"),
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated"),
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated-avr-comp", "avr")
+    ],
+
     LINKFLAGS=[
-        "-T", join( platform.get_package_dir("framework-arduinoxmc"),
+        # NOTE: --specs=nosys.specs / --specs=nano.specs are already injected by
+        # the board JSON / PlatformIO platform layer. Adding them here again causes:
+        # "attempt to rename spec 'link_gcc_c_sequence' to already defined spec"
+        "-T", join(platform.get_package_dir("framework-arduinoxmc"),
             "variants", env.BoardConfig().get("build.mcu"),
             env.BoardConfig().get("build.script", "linker_script.ld"))
     ],
 
+
+    # NOTE: api/ itself is intentionally NOT in CPPPATH/-I to match Arduino IDE
+    # behaviour (platform.txt also omits it). Adding api/ to -I causes Windows
+    # case-insensitive FS to resolve `#include <string.h>` → api/String.h.
+    # api/ headers are reached via relative includes inside cores/xmc sources.
     CPPPATH=[
         join(FRAMEWORK_DIR, "cores", "xmc"),
-        join(FRAMEWORK_DIR, "cores", "xmc", "api"),
-        join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated"),
-        join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated-avr-comp", "avr"),
         join(FRAMEWORK_DIR, "cores", "xmc", "avr"),
         join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "CMSIS", "Include"),
         join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "CMSIS", "NN", "Include"),
