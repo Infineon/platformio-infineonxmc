@@ -50,8 +50,6 @@ env.Append(
 
     # -iquote: only searched for #include "..." (quoted), NOT for #include <...>
     # This prevents Windows case-insensitive FS from resolving <string.h> -> api/String.h
-    # -include sys/types.h: force-include to provide caddr_t (BSD type) for all TUs,
-    # since _GNU_SOURCE/_BSD_SOURCE macros alone are insufficient in this newlib version.
     CCFLAGS=[
         "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api"),
         "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated"),
