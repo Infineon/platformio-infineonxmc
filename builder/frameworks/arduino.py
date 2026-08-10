@@ -48,26 +48,43 @@ env.Append(
         "-std=gnu++11"
     ],
 
+    # -iquote: only searched for #include "..." (quoted), NOT for #include <...>
+    # This prevents Windows case-insensitive FS from resolving <string.h> -> api/String.h
+    CCFLAGS=[
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api"),
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated"),
+        "-iquote", join(FRAMEWORK_DIR, "cores", "xmc", "api", "deprecated-avr-comp", "avr")
+    ],
+
     LINKFLAGS=[
-        "-T", join( platform.get_package_dir("framework-arduinoxmc"),
-            "variants", env.BoardConfig().get("build.mcu"), 
+        # NOTE: --specs=nosys.specs / --specs=nano.specs are already injected by
+        # the board JSON / PlatformIO platform layer. Adding them here again causes:
+        # "attempt to rename spec 'link_gcc_c_sequence' to already defined spec"
+        "-T", join(platform.get_package_dir("framework-arduinoxmc"),
+            "variants", env.BoardConfig().get("build.mcu"),
             env.BoardConfig().get("build.script", "linker_script.ld"))
     ],
 
+
+    # NOTE: api/ itself is intentionally NOT in CPPPATH/-I to match Arduino IDE
+    # behaviour (platform.txt also omits it). Adding api/ to -I causes Windows
+    # case-insensitive FS to resolve `#include <string.h>` → api/String.h.
+    # api/ headers are reached via relative includes inside cores/xmc sources.
     CPPPATH=[
-        join(FRAMEWORK_DIR, "cores"),
-        join(FRAMEWORK_DIR, "cores", "xmc_lib", "CMSIS", "NN", "Include"),  # comment out if no NN needed
-        join(FRAMEWORK_DIR, "cores", "xmc_lib", "CMSIS", "DSP", "Include"),  # comment out if no DSP needed
-        join(FRAMEWORK_DIR, "cores", "xmc_lib", "CMSIS", "Include"),
-        join(FRAMEWORK_DIR, "cores", "xmc_lib", "LIBS"),
-        join(FRAMEWORK_DIR, "cores", "xmc_lib", "XMCLib", "inc"),
+        join(FRAMEWORK_DIR, "cores", "xmc"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "avr"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "CMSIS", "Include"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "CMSIS", "NN", "Include"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "CMSIS", "DSP", "Include"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "LIBS"),
+        join(FRAMEWORK_DIR, "cores", "xmc", "xmc_lib", "XMCLib", "inc"),
         join(FRAMEWORK_DIR, "cores", "usblib"),
-        join(FRAMEWORK_DIR, "cores", "usblib","Class"),
-        join(FRAMEWORK_DIR, "cores", "usblib","Class","Device"),
-        join(FRAMEWORK_DIR, "cores", "usblib","Common"),
-        join(FRAMEWORK_DIR, "cores", "usblib","Core"),
-        join(FRAMEWORK_DIR, "cores", "usblib","Core","XMC4000"),
-        join(FRAMEWORK_DIR, "cores", "avr"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Class"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Class", "Common"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Class", "Device"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Common"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Core"),
+        join(FRAMEWORK_DIR, "cores", "usblib", "Core", "XMC4000"),
         join(FRAMEWORK_DIR, "variants", board_config.get("build.mcu"),
              "config", board_config.get("build.board_variant"))
     ],
@@ -98,6 +115,13 @@ if "build.variant" in env.BoardConfig():
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "FrameworkArduino"),
-    join(FRAMEWORK_DIR, "cores")
+    join(FRAMEWORK_DIR, "cores", "xmc"),
+    src_filter=(
+        "+<*> "
+        "-<xmc_lib/XMCLib/src/COMPONENT_CM0/TOOLCHAIN_ARM/> "
+        "-<xmc_lib/XMCLib/src/COMPONENT_CM0/TOOLCHAIN_IAR/> "
+        "-<xmc_lib/XMCLib/src/COMPONENT_CM4/TOOLCHAIN_ARM/> "
+        "-<xmc_lib/XMCLib/src/COMPONENT_CM4/TOOLCHAIN_IAR/>"
+    )
 ))
 env.Prepend(LIBS=libs)

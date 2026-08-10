@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/Infineon/platformio-infineonxmc.git"
   },
-  "version": "3.1.0",
+  "version": "4.1.1",
   "frameworks": {
     "arduino": {
       "package": "framework-arduinoxmc",
@@ -26,7 +26,7 @@
     },
     "framework-arduinoxmc": {
       "type": "framework",
-      "version": "https://github.com/Infineon/XMC-for-Arduino.git"
+      "version": "https://github.com/Infineon/XMC-for-Arduino/releases/download/4.1.1/xmc-for-arduino-4.1.1.zip"
     },
     "tool-jlink": {
       "type": "uploader",

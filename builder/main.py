@@ -79,7 +79,6 @@ env.Append(
     LINKFLAGS=[
         "-Os",
         "-nostartfiles",
-        "-nostdlib",
         "-Wl,--gc-sections",
         "-mthumb",
         "--specs=nano.specs",
